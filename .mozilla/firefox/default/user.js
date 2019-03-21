@@ -1,0 +1,14 @@
+user_pref("accessibility.typeaheadfind", false);
+user_pref("browser.sessionstore.resume_from_crash", false);
+user_pref("browser.tabs.insertRelatedAfterCurrent", false);
+user_pref("browser.tabs.warnOnClose", false);
+user_pref("browser.urlbar.autoFill", false);
+user_pref("browser.urlbar.formatting.enabled", false);
+user_pref("browser.urlbar.trimURLs", false);
+user_pref("dom.ipc.processCount", 7);
+user_pref("extensions.pocket.enabled", false);
+user_pref("extensions.webextensions.restrictedDomains", "");
+user_pref("general.smoothScroll", false);
+user_pref("mousewheel.default.delta_multiplier_x", 300);
+user_pref("browser.urlbar.clickSelectsAll", false);
+user_pref("browser.urlbar.doubleClickSelectsAll", true);

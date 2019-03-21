@@ -1,0 +1,37 @@
+[global]
+geometry = "400x4-8+28"
+shrink = true
+padding = 4
+horizontal_padding = 8
+separator_height = 1
+separator_color = foreground
+transparency = 10
+
+font = sans 10
+markup = full
+format = "<b>%s</b>\n%b"
+word_wrap = true
+
+icon_position = left
+max_icon_size = 48
+icon_path = /usr/share/dunst/icons/actions:/usr/share/dunst/icons/devices:/usr/share/dunst/icons/status
+
+dmenu = /usr/bin/rofi -dmenu -p dunst
+sticky_history = false
+
+[shortcuts]
+close = mod4+shift+c
+history = mod4+shift+p
+context = mod4+shift+space
+
+[urgency_low]
+background = "#282828"
+foreground = "#b8b8b8"
+
+[urgency_normal]
+background = "#282828"
+foreground = "#e8e8e8"
+
+[urgency_critical]
+background = "#552321"
+foreground = "#e8e8e8"
