@@ -10,6 +10,11 @@ fi
 # This is kind of a hack, but not that big of a deal
 [[ -e /etc/zsh/zprofile ]] && source $HOME/.zshenv
 
+# My only FreeBSD system, pfSense, doesn't really support unicode
+if [[ $OSTYPE == freebsd* ]]; then
+    export TERM="${TERM%-powerline}"
+fi
+
 if [[ $TERM == *256color* && $TERM != tmux* ]]; then
     # Configure color palette on modern terminals
     print -Pn '\e]4;0;rgb:00/00/00\a\e]4;1;rgb:ab/46/42\a\e]4;2;rgb:a1/b5/6c\a\e]4;3;rgb:f7/ca/88\a\e]4;4;rgb:7c/af/c2\a\e]4;5;rgb:ba/8b/af\a\e]4;6;rgb:86/c1/b9\a\e]4;7;rgb:d8/d8/d8\a\e]4;8;rgb:58/58/58\a\e]4;9;rgb:ab/46/42\a\e]4;10;rgb:a1/b5/6c\a\e]4;11;rgb:f7/ca/88\a\e]4;12;rgb:7c/af/c2\a\e]4;13;rgb:ba/8b/af\a\e]4;14;rgb:86/c1/b9\a\e]4;15;rgb:f8/f8/f8\a\e]4;16;rgb:dc/96/56\a\e]4;17;rgb:a1/69/46\a\e]4;18;rgb:28/28/28\a\e]4;19;rgb:38/38/38\a\e]4;20;rgb:b8/b8/b8\a\e]4;21;rgb:e8/e8/e8\a\e]10;rgb:d8/d8/d8\a\e]11;rgb:00/00/00\a\e]12;rgb:d8/d8/d8\a'
