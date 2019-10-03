@@ -17,3 +17,4 @@
 .xmonad/xmonad.hs
 .zsh/functions/prompt_mine_setup
 .zshrc
+.config/taffybar/status/monitor

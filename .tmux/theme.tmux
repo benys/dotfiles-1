@@ -32,7 +32,7 @@ if [[ $TERM == *truecolor* ]]; then
     base0D='#7cafc2'
     base0E='#ba8baf'
     base0F='#a16946'
-    tmux set -g status-right-style "fg=${base00}"
+    version_color="$base00"
     tmux setw -g window-status-last-style "bg=${base02}"
 elif (( terminfo[colors] >= 256 )); then
     tmux_term+='-256color'
@@ -52,7 +52,7 @@ elif (( terminfo[colors] >= 256 )); then
     base0D='colour4'
     base0E='colour5'
     base0F='colour17'
-    tmux set -g status-right-style "fg=${base00}"
+    version_color="$base00"
     tmux setw -g window-status-last-style "bg=${base02}"
 elif (( terminfo[colors] >= 16 )); then
     base00='colour0'
@@ -71,7 +71,7 @@ elif (( terminfo[colors] >= 16 )); then
     base0D='colour4'
     base0E='colour5'
     base0F='colour8'
-    tmux set -g status-right-style "fg=colour8"
+    version_color='colour8'
     tmux setw -g window-status-last-style "bold"
 else
     base00='colour0'
@@ -90,14 +90,14 @@ else
     base0D='colour4'
     base0E='colour5'
     base0F='colour0'
-    tmux set -g status-right-style "fg=colour8"
+    version_color='colour8'
     tmux setw -g window-status-last-style "bold"
 fi
 
 # Appearance settings that apply to all terminal types
 tmux set -g status-style "bg=${base01}"
 tmux set -g status-left-length 100
-tmux set -g status-right "v$(< ~/.version) "
+tmux set -g status-right "#[fg=${base08},bold]#{?pane_synchronized,<SYNC>,}#[fg=${version_color},none] v$(< ~/.version) "
 tmux setw -g window-status-separator ''
 tmux setw -g window-status-format ' #I: #W#F '
 tmux setw -g window-status-current-format ' #I: #W#F '

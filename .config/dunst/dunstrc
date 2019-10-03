@@ -1,13 +1,14 @@
 [global]
 geometry = "400x4-8+28"
 shrink = true
+corner_radius = 4
 padding = 4
 horizontal_padding = 8
 separator_height = 1
 separator_color = foreground
 transparency = 10
 
-font = sans 10
+font = sans 9
 markup = full
 format = "<b>%s</b>\n%b"
 word_wrap = true

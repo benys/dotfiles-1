@@ -45,7 +45,7 @@ instance ExtensionClass PanelTimer where
     initialValue = PanelTimer 0
 
 startupHook' = do
-    spawn "feh --bg-scale --no-fehbg ~/.wallpaper.png"
+    spawn "feh --bg-scale --no-xinerama --no-fehbg ~/.wallpaper.png"
     spawnOnce "compton"
     spawnOnce "dunst"
     spawnOnce "taffybar"
@@ -138,7 +138,7 @@ topicConfig = def
         [ ("web"    , spawn "~/.xmonad/scripts/firefox-wait --new-window about:home && ~/.xmonad/scripts/firefox-wait twitter.com washingtonpost.com")
         , ("ops"    , (ask >>= spawn . terminal . config))
         , ("dev"    , (ask >>= spawn . terminal . config))
-        , ("music"  , spawn "google-play-music-desktop-player")
+        , ("music"  , spawn "chromium --app=https://play.google.com/music/listen")
         , ("mail"   , spawn "~/.xmonad/scripts/firefox-wait --new-window https://mail.google.com/mail/u/0/#inbox && ~/.xmonad/scripts/firefox-wait --new-window https://mail.google.com/mail/u/1/#inbox")
         , ("chat"   , spawn "~/.xmonad/scripts/firefox-wait --new-window teams.webex.com")
         , ("windows", spawn "GDK_DPI_SCALE=1.0 GDK_SCALE=1 virt-viewer --full-screen --connect=qemu:///system --wait --reconnect -- osprey")
@@ -245,7 +245,7 @@ main = xmonad
     , ("M-S-q"         , spawn "qdbus org.kde.ksmserver /KSMServer logout 1 0 1")
     , ("M-s"           , raisePanelTemporarily >> spawn "~/.xmonad/scripts/screensaver toggle")
     , ("M-<Escape>"    , unGrab >> spawn "~/.xmonad/scripts/screensaver reset; loginctl lock-session")
-    , ("M-<Space>"     , spawn "qdbus org.mpris.MediaPlayer2.google-play-music-desktop-player /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause")
+    , ("M-<Space>"     , spawn "qdbus org.mpris.MediaPlayer2.chrome /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause")
     , ("M-<Tab>"       , sendMessage NextLayout)
     , ("M-<Backspace>" , setLayout $ Layout layoutHook')
     , ("M1-<Tab>"      , windows W.focusDown)

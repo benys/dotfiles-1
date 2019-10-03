@@ -67,6 +67,7 @@ URxvt.secondaryScroll: false
 URxvt.secondaryWheel: true
 URxvt.termName: rxvt-unicode-256color-powerline
 URxvt.urgentOnBell: true
+URxvt.letterSpace: -1
 
 XTerm*color0: rgb:00/00/00
 XTerm*color1: rgb:ab/46/42
