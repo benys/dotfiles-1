@@ -95,7 +95,7 @@ windowsConfig = defaultWindowsConfig
 statusWidget :: String -> TaffyIO Gtk.Widget
 statusWidget cmd = do
     dataDir <- liftIO $ getXdgDirectory XdgConfig "taffybar"
-    commandRunnerNew 0 (dataDir ++ "/status/" ++ cmd) [] $ T.pack ""
+    commandRunnerNew 0 (dataDir ++ "/status/read") [cmd] $ T.pack ""
 
 taffybarConfig :: SimpleTaffyConfig
 taffybarConfig = defaultSimpleTaffyConfig
@@ -108,15 +108,14 @@ taffybarConfig = defaultSimpleTaffyConfig
   where
     workspaces    = workspacesNew Main.workspacesConfig
     windows       = windowsNew windowsConfig
-    clock         = textClockNew Nothing ((colorize "#383838" "#282828" "\xe0b2") ++ (colorize "#383838" "#383838" "\x2588") ++ (colorize "#d8d8d8" "#383838" "%a %b %_d %r ")) 1
+    clock         = textClockNew Nothing ("<span fgcolor='#383838' bgcolor='#282828' letter_spacing='<%= (3333 * (text_scaling_factor - 1.1)).round %>'>\xe0b2</span>" ++ (colorize "#d8d8d8" "#383838" " %a %b %_d %r ")) 1
     statusWidgets = map statusWidget ["vpn", "screensaver", "backlight", "audio", "network", "power", "load"]
 
 main :: IO ()
 main = do
-    let monitorTypes = ["vpn", "screensaver", "backlight", "audio", "network", "power"]
     dataDir <- getXdgDirectory XdgConfig "taffybar"
-    monitorProcs <- mapM (\base -> spawnProcess (dataDir ++ "/status/" ++ base) ["monitor"]) monitorTypes
-    installHandler sigTERM (Catch (mapM_ terminateProcess monitorProcs >> Gtk.mainQuit)) Nothing
+    monitorProc <- spawnProcess (dataDir ++ "/status/monitor") []
+    installHandler sigTERM (Catch (terminateProcess monitorProc >> Gtk.mainQuit)) Nothing
     simpleTaffybar taffybarConfig
 
 -- vim: filetype=haskell
