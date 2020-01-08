@@ -1,3 +1,5 @@
+#include "/etc/X11/Xresources"
+
 *color0: rgb:ff/ff/ff
 *color1: rgb:c8/28/29
 *color2: rgb:71/8c/00
